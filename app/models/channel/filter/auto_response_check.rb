@@ -17,7 +17,7 @@ module Channel::Filter::AutoResponseCheck
     # do not send an auto response if one of the following headers exists
     return if mail[ 'list-unsubscribe'.to_sym ] && mail[ 'list-unsubscribe'.to_sym ] =~ /.../
     return if mail[ 'x-loop'.to_sym ] && mail[ 'x-loop'.to_sym ] =~ /(yes|true)/i
-    return if mail[ 'precedence'.to_sym ] && mail[ 'precedence'.to_sym ] =~ /(bulk|list|junk)/i
+    return if mail[ 'precedence'.to_sym ] && mail[ 'precedence'.to_sym ] =~ /(bulk|junk)/i
     return if mail[ 'auto-submitted'.to_sym ] && mail[ 'auto-submitted'.to_sym ] =~ /auto-(generated|replied)/i
     return if mail[ 'x-auto-response-suppress'.to_sym ] && mail[ 'x-auto-response-suppress'.to_sym ] =~ /all/i
 
