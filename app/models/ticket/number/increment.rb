@@ -8,7 +8,8 @@ module Ticket::Number::Increment
                              .find_or_create_by(generator: 'Increment')
 
     counter.with_lock do
-      counter.update(content: counter.content.to_i.next.to_s)
+      max_existing = [Ticket.maximum(:id), counter.content.to_i].max
+      counter.update(content: max_existing.next.to_s)
     end
 
     # fill up number counter
